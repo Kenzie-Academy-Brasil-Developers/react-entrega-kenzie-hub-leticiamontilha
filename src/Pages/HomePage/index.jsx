@@ -8,8 +8,10 @@ export const HomePage = () => {
             <MainHomePage>
             <NavBar/> 
             <Header/>
-                <h4>Que pena! Estamos em desenvolvimento :(</h4>
-                <p>Nossa aplicação está em desenvolvimento, em breve teremos novidades</p>
+                <div>
+                    <h4>Que pena! Estamos em desenvolvimento :(</h4>
+                    <p>Nossa aplicação está em desenvolvimento, em breve teremos novidades</p>
+                </div>
             </MainHomePage>
         </>
     )

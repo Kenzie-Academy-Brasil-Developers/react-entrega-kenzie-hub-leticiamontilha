@@ -10,6 +10,24 @@ export const MainHomePage = styled.main`
 
     margin-top: 80px;
 
+    div {
+        padding: 15px;
+        width: 100%;
+    }
+
+    div > h4 {
+        font-weight: 500;
+        font-size: 18px;
+        color: var(--color-white);
+    }
+
+    div > p {
+        font-weight: 100;
+        font-size: 16px;
+        color: var(--color-white);
+    }
+    
+
     @media (min-width: 900px) {
         width: 1200px;
         margin: 0 auto;
