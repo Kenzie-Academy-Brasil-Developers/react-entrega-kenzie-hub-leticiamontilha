@@ -4,6 +4,7 @@ import Logo from "../../Assets/img/Logo.svg"
 import { MainLogin, SectionLogin } from "./style"
 
 export const LoginPage = () => {
+
     return (
         <MainLogin>
             <img src={Logo} alt="" />

@@ -37,3 +37,10 @@ export const Form = styled.form`
     }
    }
 `
+
+export const ErrorMessage = styled.span`
+    font-size: 12px;
+    font-weight: 600;
+    color: red;
+
+`
