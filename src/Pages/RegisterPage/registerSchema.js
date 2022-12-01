@@ -17,9 +17,10 @@ export const RegisterSchema = yup.object().shape({
     .matches(/(?=.*?[0-9])/, "É necessário pelo menos um número")
     .matches(/(?=.*?[#?!@$%^&*-])/, "É necessário pelo menos um caractere especial")
     .min(8, "É necessário pelo menos 8 caracteres"),
-    // confirmPassword: yup
-    // .string()
-    // .required("A senha é obrigatória"),
+    confirmPassword: yup
+    .string()
+    .oneOf([yup.ref("password")], "Confirmação de senha deve ser igual senha")
+    .required("A senha é obrigatória"),
     bio: yup
     .string()
     .required("A bio é obrigatória")

@@ -42,7 +42,16 @@ export const FormularioRegister = ({userRegister, loading}) => {
 
 
     const submit = (data) => {
-        userRegister(data)
+        const newUser = {
+            name: data.name,
+            email: data.email,
+            password: data.password,
+            bio: data.bio,
+            contact: data.contact,
+            course_module: data.course_module
+        }
+        
+        userRegister(newUser)
         reset()
     };
     
@@ -54,10 +63,10 @@ export const FormularioRegister = ({userRegister, loading}) => {
             <InputAndLabel label="Email" type="Email" name="Email" placeholder="Digite aqui seu email" register={register("email")}/>
             {errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
 
-            <InputAndLabel label="Senha" type="password" name="password" id="password" placeholder="Digite aqui sua senha" register={register("password")}/>
+            <InputAndLabel label="Senha" type="password" name="password" placeholder="Digite aqui sua senha" register={register("password")}/>
             {errors.password && <ErrorMessage>{errors.password.message}</ErrorMessage>}
 
-            <InputAndLabel label="Confirmar Senha" type="password" name="confirmPassword" id="confirmPassword" placeholder="Digite novamente sua senha"/>
+            <InputAndLabel label="Confirmar Senha" type="password" name="confirmPassword" placeholder="Digite novamente sua senha" register={register("confirmPassword")}/>
             {errors.confirmPassword && <ErrorMessage>{errors.confirmPassword.message}</ErrorMessage>}
 
             <InputAndLabel label="Bio" type="text" name="bio" placeholder="Fale sobre você" register={register("bio")}/>
