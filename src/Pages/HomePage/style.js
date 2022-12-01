@@ -13,6 +13,7 @@ export const MainHomePage = styled.main`
     div {
         padding: 15px;
         width: 100%;
+        text-align: center;
     }
 
     div > h4 {

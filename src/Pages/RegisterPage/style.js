@@ -60,4 +60,17 @@ export const DivLogo = styled.div`
     margin-bottom: 25px;
     margin-top: 25px;
 
+    a {
+        text-decoration: none;
+        background: #212529;
+        border-radius: 4px;
+        border: none;
+        width: 67px;
+        height: 40px;
+        color: var(--color-white);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
 `

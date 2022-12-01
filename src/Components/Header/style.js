@@ -13,20 +13,27 @@ export const HeaderPage = styled.header`
     div {
         border-top: 1px solid var(--color-grey-3);
         border-bottom: 1px solid var(--color-grey-3);
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        align-items: center;
         height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
     }
 
-    div > h2 {
+    span {
+        width: 1100px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    span > h2 {
         font-weight: 700;
         font-size: 18px;
         color: var(--color-white);
     }
 
-    div > p {
+    span > p {
         font-weight: 500;
         font-size: 12px;
         color: var(--color-grey-2);
@@ -37,11 +44,19 @@ export const HeaderPage = styled.header`
         width: 100%;
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: center;
         gap: 10px;
-    }
+        }
+
+        span {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        }
 
         
     }
 
 `
+

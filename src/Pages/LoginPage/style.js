@@ -36,22 +36,36 @@ export const SectionLogin = styled.section`
 
     h2 {
         color: var(--color-white);
-
         font-weight: 400;
         font-size: 18px;
     }
 
-    p {
+    a {
+        text-decoration: none;
         font-weight: 500;
         font-size: 12px;
         color: var(--color-grey-1);
     }
 
-      /* 
+    .btnCadastrar{
+        width: 235px;
+        height: 48px;
 
-    @media (min-width: 900px) {
-        width: 300px;
-        height: 450px;
-        margin-top: 10px;
-    }; */
+        border-radius: 5px;
+        border: 2px solid var(--color-grey-1);
+        background-color: var(--color-grey-1);
+        color: var(--color-white);
+
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+
+        &:hover{
+            background-color: var(--color-grey-2);
+            border: 2px solid var(--color-grey-2);
+        }
+    }
+
 `

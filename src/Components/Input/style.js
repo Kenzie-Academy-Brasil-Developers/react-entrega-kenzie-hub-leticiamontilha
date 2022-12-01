@@ -8,7 +8,6 @@ export const InputType = styled.input`
     border: 1.2182px solid var(--color-grey-1);
     border-radius: 4px;
 
-
     &::placeholder{
         color: var(--color-grey-1);
         padding: 5px;

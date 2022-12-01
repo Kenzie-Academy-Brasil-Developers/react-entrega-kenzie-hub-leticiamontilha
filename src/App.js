@@ -1,10 +1,10 @@
 import { RoutesMain as Routes } from "./Routes";
 import GlobalStyle from "./Style/GlobalStyles";
 import { ToastContainer } from "react-toastify"
-
-
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
+
   return (
     <>
       <ToastContainer

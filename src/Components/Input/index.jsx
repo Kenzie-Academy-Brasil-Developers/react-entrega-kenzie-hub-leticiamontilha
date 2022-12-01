@@ -16,10 +16,10 @@ export const InputSelect = ({label, register}) => {
         <LabelInput>{label}</LabelInput>
         <InputTypeSelect name="modulo" id="modulo" {...register}>
             <OptionSelect value="">Selecione o módulo</OptionSelect>
-            <OptionSelect value="Primeiro Modulo">Primeiro módulo (Introdução ao Frontend)</OptionSelect>
-            <OptionSelect value="Segundo Modulo">Segundo módulo (Frontend Avançado)</OptionSelect>
-            <OptionSelect value="Terceiro Modulo">Terceiro módulo (Introdução ao Backend)</OptionSelect>
-            <OptionSelect value="Quarto Modulo">Quarto módulo (Backend Avançado)</OptionSelect>
+            <OptionSelect value="Primeiro módulo (Introdução ao Frontend)">Primeiro módulo (Introdução ao Frontend)</OptionSelect>
+            <OptionSelect value="Segundo módulo (Frontend Avançado)">Segundo módulo (Frontend Avançado)</OptionSelect>
+            <OptionSelect value="Terceiro módulo (Introdução ao Backend)">Terceiro módulo (Introdução ao Backend)</OptionSelect>
+            <OptionSelect value="Quarto módulo (Backend Avançado)">Quarto módulo (Backend Avançado)</OptionSelect>
         </InputTypeSelect>
         </>
     )
