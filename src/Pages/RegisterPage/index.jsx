@@ -14,7 +14,7 @@ export const RegisterPage = () => {
     const userRegister = async (formData) => {
         try {
             setLoading(true);
-            const response = await Api.post("/users", formData);
+            await Api.post("/users", formData);
             
             toast.success("Cadastro realizado com sucesso!")
             navigate("/")
