@@ -1,33 +1,13 @@
 import { FormularioRegister } from "../../Components/Form"
 import Logo from "../../Assets/img/Logo.svg"
 import { DivLogo, MainRegister, SectionRegister } from "./style"
-import { Link, useNavigate } from "react-router-dom"
-import { useState } from "react"
-import { Api } from "../../Services/api"
-import { toast } from "react-toastify"
+import { Link } from "react-router-dom"
+import { useContext } from "react"
+import { UserContext } from "../../Contexts/UserContext"
 
 export const RegisterPage = () => {
 
-    const navigate = useNavigate()
-    const [ loading, setLoading ] = useState(false)
-
-    const userRegister = async (formData) => {
-        try {
-            setLoading(true);
-            await Api.post("/users", formData);
-            
-            toast.success("Cadastro realizado com sucesso!")
-            navigate("/")
-            
-        } catch (error) {
-            toast.error("O cadastro não pode ser realizado, tente novamente")
-            console.log(error)
-        
-        } finally {
-            setLoading(false);
-        }
-    }
-
+    const { userRegister, loading, setLoading } = useContext(UserContext)
 
     return (
         <>

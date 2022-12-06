@@ -1,14 +1,18 @@
 import { NavBar } from "../../Components/NavBar"
 import { Header } from "../../Components/Header"
-import { MainHomePage } from "./style"
-import { useEffect } from "react"
+import { MainHomePage, PrincipalSection } from "./style"
+import { useContext, useEffect } from "react"
 import { Api } from "../../Services/api"
 import { useNavigate } from "react-router-dom"
+import Lixo from "../../Assets/img/lixo.png"
+import { UserContext } from "../../Contexts/UserContext"
 
 
-export const HomePage = ({user, setUser}) => {
+export const HomePage = () => {
+
+    const { user, setUser } = useContext(UserContext)
     const navigate = useNavigate()
-    const tokenUser = window.localStorage.getItem("@TOKEN:")
+    const tokenUser = localStorage.getItem("@TOKEN:")
 
     useEffect(() => {
         async function getUser () {
@@ -27,17 +31,30 @@ export const HomePage = ({user, setUser}) => {
 
     })
 
-
     
     return (
         <>
             <MainHomePage>
             <NavBar setUser={setUser}/> 
             <Header user={user}/>
+            <PrincipalSection>
                 <div>
-                    <h4>Que pena! Estamos em desenvolvimento :(</h4>
-                    <p>Nossa aplicação está em desenvolvimento, em breve teremos novidades</p>
+                    <h2>Tecnologias</h2>
+                    <button>+</button>
                 </div>
+              <ul>
+                    <li>
+                        <h4>React JS</h4>
+                        <span>
+                            <p>Intermediário</p>
+                            <button>
+                                <img src={Lixo} alt="botão excluir" />
+                            </button>
+                        </span>
+                    </li>
+                </ul>
+
+            </PrincipalSection>
             </MainHomePage>
         </>
     )

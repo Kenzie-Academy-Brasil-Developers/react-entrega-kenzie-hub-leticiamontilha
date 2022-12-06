@@ -2,6 +2,7 @@ import { RoutesMain as Routes } from "./Routes";
 import GlobalStyle from "./Style/GlobalStyles";
 import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css";
+import { UserProvider } from "./Contexts/UserContext";
 
 function App() {
 
@@ -20,7 +21,9 @@ function App() {
         theme="light"
       />
       <GlobalStyle/>
-      <Routes/>
+      <UserProvider>
+        <Routes/>
+      </UserProvider>
     </>
   );
 }

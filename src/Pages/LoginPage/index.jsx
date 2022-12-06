@@ -1,42 +1,12 @@
 import { FormularioLogin } from "../../Components/Form"
 import Logo from "../../Assets/img/Logo.svg"
 import { MainLogin, SectionLogin } from "./style"
-import { Link, useNavigate } from "react-router-dom"
-import { toast } from "react-toastify"
-import { useState } from "react"
-import { Api } from "../../Services/api"
+import { Link } from "react-router-dom"
+import { useContext } from "react"
+import { UserContext } from "../../Contexts/UserContext"
 
-export const LoginPage = ({user, setUser}) => {
-    const navigate = useNavigate()
-    const [ loading, setLoading ] = useState(false)
-
-    const userLogin = async (formData) => {
-        try {
-            setLoading(true);
-            const response = await Api.post("/sessions", formData);
-            const token = response.data.token
-            const userId = response.data.user.id
-            const usuario = response.data.user
-
-            toast.success("Login realizado com sucesso!")
-            navigate("/Home")
-           
-            setUser(usuario)
-      
-            window.localStorage.clear()
-            window.localStorage.setItem("@TOKEN:", token)
-            window.localStorage.setItem("@USERID:", userId)
-    
-        } catch (error) {
-            toast.error("Email e/ou senha inválida")
-          
-            console.log(error)
-        
-        } finally {
-            setLoading(false);
-        }
-    }
-
+export const LoginPage = () => {
+    const { userLogin, loading, setLoading } = useContext(UserContext)
 
     return (
         <MainLogin>

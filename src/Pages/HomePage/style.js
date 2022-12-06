@@ -39,3 +39,79 @@ export const MainHomePage = styled.main`
     }
 
 `
+
+export const PrincipalSection = styled.section`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    div {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    h2 {
+        font-weight: 600;
+        font-size: 16px;
+        color: white;
+    }
+
+   ul {
+    width: 100%;
+    height: max-content;
+    max-height: 320px;
+    overflow-x: auto;
+    
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    
+    padding: 10px;
+
+    background-color: #212529;
+    border-radius: 4px;
+   }
+
+    li {
+    width: 98%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background-color: #121214;
+    
+    padding: 10px;
+    border-radius: 4px;
+   }
+
+   li > h4 {
+    color: white;
+    font-weight: 700;
+    font-size: 14.21px;
+   }
+
+   span {
+    display: flex;
+    gap: 50px;
+    align-items: center;
+   }
+
+   span > p {
+    font-weight: 400;
+    font-size: 12.182px;
+    color: #868E96;
+   }
+
+   button {
+    background: transparent;
+    border: none;
+    font-size: 25px;
+    color: white;
+    width: 50px;
+    height: 50px;
+   }
+
+ 
+
+`
