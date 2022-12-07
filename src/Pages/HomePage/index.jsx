@@ -1,61 +1,46 @@
 import { NavBar } from "../../Components/NavBar"
 import { Header } from "../../Components/Header"
 import { MainHomePage, PrincipalSection } from "./style"
-import { useContext, useEffect } from "react"
-import { Api } from "../../Services/api"
-import { useNavigate } from "react-router-dom"
 import Lixo from "../../Assets/img/lixo.png"
+import { useContext } from "react"
 import { UserContext } from "../../Contexts/UserContext"
-
+import { ModalAddTech, ModalEditTech } from "../../Components/Modal"
 
 export const HomePage = () => {
 
-    const { user, setUser } = useContext(UserContext)
-    const navigate = useNavigate()
-    const tokenUser = localStorage.getItem("@TOKEN:")
+    const { user, modalAdd, setModalAdd, modalEdit, setModalEdit } = useContext(UserContext)
 
-    useEffect(() => {
-        async function getUser () {
-            try {
-                Api.defaults.headers.common.authorization=`Bearer ${tokenUser}`
-                await Api.get("/profile")
-                
-            } catch (error) {
-                navigate("/")
-                localStorage.clear()
-                console.log(error)
-            }
-        }
-
-        getUser()
-
-    })
-
-    
     return (
         <>
+        { user ? (
             <MainHomePage>
-            <NavBar setUser={setUser}/> 
-            <Header user={user}/>
+            <NavBar /> 
+            <Header />
             <PrincipalSection>
                 <div>
                     <h2>Tecnologias</h2>
-                    <button>+</button>
+                    <button onClick={() => setModalAdd(true)}>+</button>
                 </div>
               <ul>
-                    <li>
-                        <h4>React JS</h4>
-                        <span>
-                            <p>Intermediário</p>
-                            <button>
-                                <img src={Lixo} alt="botão excluir" />
-                            </button>
-                        </span>
-                    </li>
+                { user.techs.map((elem) => {
+                    return (
+                        <li key={elem.id}>
+                            <h4>{elem.title}</h4>
+                            <span>
+                                <p>{elem.status}</p>
+                                <button  onClick={() => setModalEdit(true)}>
+                                    <img src={Lixo} alt="botão excluir" />
+                                </button>
+                            </span>
+                        </li>
+                    )
+                    })}
                 </ul>
-
             </PrincipalSection>
+            { modalAdd && <ModalAddTech/>}
+            { modalEdit && <ModalEditTech/>}
             </MainHomePage>
+        ) : ( <h2>Carregando</h2>)}
         </>
-    )
+    ) 
 }

@@ -35,7 +35,7 @@ export const MainHomePage = styled.main`
         padding-left: 1rem;
         padding-right: 1rem;
 
-        margin-top: 100px;
+        margin-top: 0px;
     }
 
 `

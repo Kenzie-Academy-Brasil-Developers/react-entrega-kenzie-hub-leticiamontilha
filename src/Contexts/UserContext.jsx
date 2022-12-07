@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import  { Api } from "../Services/api"
@@ -9,24 +9,26 @@ export const UserProvider = ({children}) => {
     const navigate = useNavigate()
     const [ user, setUser ] = useState(null)
     const [ loading, setLoading ] = useState(false)
+    const [ modalAdd, setModalAdd ] = useState(false)
+    const [ modalEdit, setModalEdit ] = useState(false)
 
     const userLogin = async (formData) => {
         try {
             setLoading(true);
             const response = await Api.post("/sessions", formData);
             const token = response.data.token
-            const userId = response.data.user.id
             const usuario = response.data.user
+            const userId = response.data.user.id
 
             toast.success("Login realizado com sucesso!")
-            navigate("/Home")
-           
+            
             setUser(usuario)
-      
+            
             localStorage.clear()
             localStorage.setItem("@TOKEN:", token)
             localStorage.setItem("@USERID:", userId)
-    
+            
+            navigate("/Home")
         } catch (error) {
             toast.error("Email e/ou senha inválida")
           
@@ -52,10 +54,41 @@ export const UserProvider = ({children}) => {
             } finally {
                 setLoading(false);
             }
+    }
+
+    useEffect(() => {
+        async function getUser () {
+            const tokenUser = localStorage.getItem("@TOKEN:")
+            
+            if(tokenUser){
+                try {
+                    Api.defaults.headers.common.authorization=`Bearer ${tokenUser}`
+                    const response =  await Api.get("/profile")
+                    setUser(response.data)
+                    navigate("/Home")
+    
+                } catch (error) {
+                    navigate("/")
+                    localStorage.clear()
+                    console.log(error)
+                }
+            }
         }
+        
+        getUser()
+        
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+
 
     return (
-        <UserContext.Provider value={{userLogin, user, setUser, loading, setLoading, userRegister}}>
+        <UserContext.Provider value={{userLogin, 
+        user, setUser, 
+        loading, setLoading, 
+        userRegister,
+        modalAdd, setModalAdd,
+        modalEdit, setModalEdit
+        }}>
             {children}
         </UserContext.Provider>
     )

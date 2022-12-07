@@ -1,6 +1,10 @@
+import { useContext } from "react"
+import { UserContext } from "../../Contexts/UserContext"
 import { HeaderPage } from "./style"
 
-export const Header = ({user}) => {
+export const Header = () => {
+    const { user } = useContext(UserContext)
+    
     return (
         <HeaderPage>
             <div>
