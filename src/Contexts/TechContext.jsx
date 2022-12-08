@@ -65,9 +65,9 @@ export const TechProvider = ({children}) => {
                 const response =  await Api.get(`/users/${idUser}`)
                 const tecnologias = response.data.techs
                 
-                setTimeout(() => {
-                    isListTechs(tecnologias)   
-                }, 5000);
+
+                isListTechs(tecnologias)   
+
                 
             } catch (error) {
                 console.log(error)
@@ -76,7 +76,7 @@ export const TechProvider = ({children}) => {
 
         getTech()
 
-    }, [loginControler])
+    }, [listTechs])
 
 
     return (
