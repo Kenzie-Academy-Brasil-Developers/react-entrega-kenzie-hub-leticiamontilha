@@ -1,7 +1,8 @@
 import { createContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import  { Api } from "../Services/api"
+import { TechProvider } from "./TechContext";
 
 export const UserContext = createContext({});
 
@@ -9,8 +10,6 @@ export const UserProvider = ({children}) => {
     const navigate = useNavigate()
     const [ user, setUser ] = useState(null)
     const [ loading, setLoading ] = useState(false)
-    const [ modalAdd, setModalAdd ] = useState(false)
-    const [ modalEdit, setModalEdit ] = useState(false)
 
     const userLogin = async (formData) => {
         try {
@@ -23,12 +22,13 @@ export const UserProvider = ({children}) => {
             toast.success("Login realizado com sucesso!")
             
             setUser(usuario)
-            
+    
             localStorage.clear()
             localStorage.setItem("@TOKEN:", token)
             localStorage.setItem("@USERID:", userId)
             
             navigate("/Home")
+
         } catch (error) {
             toast.error("Email e/ou senha inválida")
           
@@ -56,22 +56,25 @@ export const UserProvider = ({children}) => {
             }
     }
 
+
     useEffect(() => {
         async function getUser () {
             const tokenUser = localStorage.getItem("@TOKEN:")
             
-            if(tokenUser){
-                try {
-                    Api.defaults.headers.common.authorization=`Bearer ${tokenUser}`
-                    const response =  await Api.get("/profile")
-                    setUser(response.data)
-                    navigate("/Home")
-    
-                } catch (error) {
-                    navigate("/")
-                    localStorage.clear()
-                    console.log(error)
-                }
+            if(!tokenUser){
+              return <Navigate to="/"/>
+            } 
+
+            try {
+                Api.defaults.headers.common.authorization=`Bearer ${tokenUser}`
+                const response =  await Api.get("/profile")
+                setUser(response.data)
+                navigate("/Home")
+
+            } catch (error) {
+                navigate("/")
+                localStorage.clear()
+                console.log(error)
             }
         }
         
@@ -80,16 +83,15 @@ export const UserProvider = ({children}) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-
     return (
         <UserContext.Provider value={{userLogin, 
         user, setUser, 
         loading, setLoading, 
         userRegister,
-        modalAdd, setModalAdd,
-        modalEdit, setModalEdit
         }}>
-            {children}
+            <TechProvider>
+                {children}
+            </TechProvider>
         </UserContext.Provider>
     )
 }

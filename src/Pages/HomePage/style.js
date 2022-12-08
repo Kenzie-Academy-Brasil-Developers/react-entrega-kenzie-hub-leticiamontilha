@@ -59,7 +59,7 @@ export const PrincipalSection = styled.section`
    ul {
     width: 100%;
     height: max-content;
-    max-height: 320px;
+    max-height: 500px;
     overflow-x: auto;
     
     display: flex;
@@ -103,13 +103,27 @@ export const PrincipalSection = styled.section`
     color: #868E96;
    }
 
+   .btnEdit {
+    width: 50px;
+    height: 15px;
+    font-size: 10px;
+   }
+
    button {
     background: transparent;
     border: none;
     font-size: 25px;
     color: white;
-    width: 50px;
-    height: 50px;
+    width: 10px;
+    height: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   }
+
+   button > img {
+    width: 100%;
+    height: 100%;
    }
 
  
