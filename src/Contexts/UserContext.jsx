@@ -10,6 +10,7 @@ export const UserProvider = ({children}) => {
     const navigate = useNavigate()
     const [ user, setUser ] = useState(null)
     const [ loading, setLoading ] = useState(false)
+    const [ loginControler, setLoginControler ] = useState(0)
 
     const userLogin = async (formData) => {
         try {
@@ -22,6 +23,7 @@ export const UserProvider = ({children}) => {
             toast.success("Login realizado com sucesso!")
             
             setUser(usuario)
+            setLoginControler(loginControler +1)
     
             localStorage.clear()
             localStorage.setItem("@TOKEN:", token)
@@ -69,6 +71,7 @@ export const UserProvider = ({children}) => {
                 Api.defaults.headers.common.authorization=`Bearer ${tokenUser}`
                 const response =  await Api.get("/profile")
                 setUser(response.data)
+                
                 navigate("/Home")
 
             } catch (error) {
@@ -87,7 +90,7 @@ export const UserProvider = ({children}) => {
         <UserContext.Provider value={{userLogin, 
         user, setUser, 
         loading, setLoading, 
-        userRegister,
+        userRegister, loginControler
         }}>
             <TechProvider>
                 {children}

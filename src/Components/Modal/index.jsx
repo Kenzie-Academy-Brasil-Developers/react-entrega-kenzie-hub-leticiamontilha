@@ -52,7 +52,7 @@ export const ModalAddTech = () => {
 
 export const ModalEditTech = () => {
 
-    const { techEdit, setModalEdit } = useContext(TechContext)
+    const { techEdit, setModalEdit, listTechs } = useContext(TechContext)
 
     const { register, handleSubmit, reset, formState: {errors} } = useForm({
         mode: "onBlur",
@@ -60,11 +60,18 @@ export const ModalEditTech = () => {
     })
 
     const submit = (data) => {
-        console.log(data)
-        techEdit("985eba63-4389-4968-8a0d-6e966d688a5b", data)
+        const techId = localStorage.getItem("@TECHID")
+        techEdit(techId, data)
         reset()
         setModalEdit(false)
     };
+
+    const findTech = () => {
+        const techId = localStorage.getItem("@TECHID")
+        const tech = listTechs.find(elem => elem.id === techId)
+
+        return tech
+    }
 
 
     return (
@@ -75,7 +82,7 @@ export const ModalEditTech = () => {
         </div>
         <FormModal noValidate onSubmit={handleSubmit(submit)}>
             <label htmlFor="">Nome do projeto</label>
-            <input type="text" disabled />
+            <input type="text" disabled value={findTech().title}/>
             <label htmlFor="">Status</label>
           
             <select {...register("status")}>

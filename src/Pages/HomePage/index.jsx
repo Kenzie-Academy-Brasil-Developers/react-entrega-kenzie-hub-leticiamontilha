@@ -5,8 +5,9 @@ import Lixo from "../../Assets/img/lixo.png"
 import { useContext } from "react"
 import { UserContext } from "../../Contexts/UserContext"
 import { ModalAddTech, ModalEditTech } from "../../Components/Modal"
-import { Navigate } from "react-router-dom"
 import { TechContext } from "../../Contexts/TechContext"
+import { Navigate } from "react-router-dom"
+import { Loading } from "../../Components/Loading"
 
 export const HomePage = () => {
 
@@ -25,13 +26,16 @@ export const HomePage = () => {
                     <button onClick={() => setModalAdd(true)}>+</button>
                 </div>
               <ul> 
-                { listTechs.map((elem) => {
+                { listTechs ?  listTechs.map((elem) => {
                     return (
                         <li key={elem.id}>
                             <h4>{elem.title}</h4>
                             <span>
                                 <p>{elem.status}</p>
-                                <button className="btnEdit" onClick={() => setModalEdit(true)} >Editar</button>
+                                <button className="btnEdit" onClick={() => {
+                                    setModalEdit(true)
+                                    localStorage.setItem("@TECHID", elem.id)
+                                }} >Editar</button>
                                 <button onClick={() => techDelete(elem.id) }>
                                     <img src={Lixo} alt="botão excluir"/>
                                 </button>
@@ -39,13 +43,13 @@ export const HomePage = () => {
     
                         </li>
                     )
-                    })}
+                    }) : <Loading />}
                 </ul>
             </PrincipalSection>
             { modalAdd && <ModalAddTech/>}
             { modalEdit && <ModalEditTech/>}
             </MainHomePage>
-        ) :  <Navigate to="/"/>}
+        ) :  <Navigate to="/" />}
         </>
     ) 
 }
